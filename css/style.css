@@ -1,0 +1,73 @@
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.one
+{
+  height: 650px;
+  width: 500px;
+  border:20px solid oldlace;
+  padding: 20px;
+ position: relative;
+ box-shadow: 0px 5px 10px 0px rgba(400, 20, 100); 
+background-color: black;
+ border-radius: 40px;
+  
+}
+img
+{
+    height: 400px;
+    width: 90%;
+    box-shadow: 0px 5px 10px white; 
+    object-fit: cover;
+    border-radius: 40PX;
+    margin-left: 25px;
+}
+h1,img,p
+{
+    text-align: center;
+    
+}
+.one h1
+{
+    font-weight: 600;
+    color: blueviolet;
+    letter-spacing: 2px;
+  
+}
+p
+{
+    color: pink;
+    letter-spacing: 2px;
+}
+.one p,marquee
+{
+    font-weight: 800;
+  
+ 
+}
+input
+{
+    width: 100%;
+}
+.one button 
+{
+    padding:10px;
+    width: 80px;
+    border-radius: 50%;
+    gap: 100px;
+    margin-left: 50px;
+    border: none;
+    box-shadow:5px 5px 10px rgba(0,0,0,.5),-1px -1px 1px white;
+    background-color:cadetblue;
+    margin-top: 12px;
+}
+.start
+{
+    display: flex;
+}

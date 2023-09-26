@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+ <div class="one ">
+
+    <img id="image"></img>
+    <p style="margin-top: 20px;" id="author">author</p>
+    <marquee id="title" style="color:azure;letter-spacing: 2px;">mp3 songs</marquee>
+    <input type="range" id="duration" min="0" max="100" value="0" onclick="change_duration()">
+   <div class="start">   
+    <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward"></i></button>
+       <button onclick="justplay()" id="play"><i class="fa fa-play"></i></button>
+       <button onclick="next_song()" id="next"><i class="fa fa-step-forward"></i> </button>
+    </div>
+ 
+</div>
+
+  
+<script>
+let previous=document.getElementById("pre");
+let play=document.getElementById("play");
+let next=document.getElementById("next");
+let title=document.getElementById("title");
+let artist=document.getElementById("author");
+let slider=document.getElementById("duration");
+let track_image=document.getElementById("image");
+let timer,total;
+let autoplay=1;
+let index_no=0;
+let playing_song=false;
+let track=document.createElement('audio');
+
+let All_song=[
+    {
+        name:'FADED SONG',
+        path:'music/one.mp3',
+        img:'img/alan.jpg',
+        artist:'ALAN WALKER'
+    },
+    {
+        name:'SHAPE OF YOU',
+        path:'music/shape.mp3',
+        img:'img/ed.jpg',
+        artist:'ED SHEERAN'
+    },
+    {
+        name:'CALM DOWN',
+        path:'music/calm.mp3',
+        img:'img/dom.jog.jpg',
+        artist:'REMA'
+    },
+    {
+        name:'YUMMY YUMMY',
+        path:'music/yummy.mp3',
+        img:'img/yummy.jpg',
+        artist:'JOEY LEVINE'
+    },
+    {
+        name:'JAILER',
+        path:'music/jailer.mp3',
+        img:'img/yukum.jpg',
+        artist:'ANIRUDH RAVICHANDAR'
+    },
+    {
+        name:'LOVE TODAY',
+        path:'music/love today.mp3',
+        img:'img/love.jpg',
+        artist:'YUVAN SHANKAR RAJA'
+    },
+    {
+        name:'KAATHU VAKULA RENDU KAADHAL',
+        path:'music/kaathuvakula.mp3',
+        img:'img/alaga.jpg',
+        artist:'ANIRUDH RAVICHANDAR'
+    },
+    {
+        name:'SARVAM',
+        path:'music/sarvam.mp3',
+        img:'img/kattru.jpg',
+        artist:'YUVAN SHANKAR RAJA'
+    },
+    {
+        name:'DADA',
+        path:'music/dada.mp3',
+        img:'img/dad.jpg',
+        artist:'ANOTONY DASAN'
+    },
+    {
+        name:'ADHITHYA VARMA',
+        path:'music/varma.mp3',
+        img:'img/varma.jpg',
+        artist:'G.V PRAKASH'
+    }
+]
+function load_track(index_no)
+{
+   
+    reset_slider();
+    track.src=All_song[index_no].path;
+    title.innerHTML=All_song[index_no].name;
+    track_image.src=All_song[index_no].img;
+    artist.innerHTML=All_song[index_no].artist;
+    timer=setInterval(range_slider);
+    total.innerHTML=All_song.length;
+    present.innerHTML=index_no+1;
+}
+load_track(index_no);
+function justplay()
+{
+    if(playing_song==false)
+    {
+        playsong();
+    }
+    else
+    {
+        pausesong();
+    }
+}
+function reset_slider()
+{
+    slider.value=0;
+}
+function playsong()
+{
+    track.play();
+    playing_song=true;
+    play.innerHTML='<i class="fa fa-pause"></i>'
+}
+function pausesong()
+{
+    track.pause();
+    playing_song=false;
+    play.innerHTML='<i class="fa fa-play"></i>'
+}
+function next_song()
+{
+    if(index_no<All_song.length -1)
+    {
+        index_no+=1;
+        load_track(index_no);
+        playsong();
+    }
+    else
+    {
+        index_no=0;
+        load_track(index_no);
+        playsong();
+    }
+}
+function previous_song()
+{
+    if(index_no>0)
+    {
+        index_no-=1;
+        load_track(index_no);
+        playsong();
+    }
+    else
+    {
+        index_no=All_song.length;
+        load_track(index_no);
+        playsong();
+    }
+}
+function change_duration()
+{
+    slider_position=track.duration*(slider.value/100);
+    track.currentTime=slider_position;
+    
+    
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
